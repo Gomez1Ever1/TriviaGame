@@ -105,5 +105,28 @@ $(document).ready(function () {
             };
         }
     }
-
+    function gameOver() {
+        var text;
+        if (wins > 3) {
+            var text = $("<div>You Win!</div>")
+                .attr("class", "text-center text-white");
+        }
+        else {
+            var text = $("<div>You Lost!</div>")
+                .attr("class", "text-center text-white");
+        }
+        $("#container1").html(text);
+        scoreKeep();
+        wins = 0;
+        loss = 0;
+        i = 0;
+        var reStart = $("<div>Restart Game</div>")
+            .attr({
+                "type": "button",
+                "data-value": "newGame",
+                "class": "newGame col-3 text-center rounded"
+            });
+        $("#container1").append(reStart);
+        $(document).on("click", ".newGame", gameStart);
+    }
 })
